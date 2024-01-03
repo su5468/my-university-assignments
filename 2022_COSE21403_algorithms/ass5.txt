@@ -1,0 +1,64 @@
+from sys import stdin
+input = stdin.readline
+
+def mh(q, i):
+	l = i * 2
+	r = i * 2 + 1
+	n = len(q)
+	try:
+		m = min(l, r, i, key=lambda x: q[x][0])
+	except:
+		try:
+			m = min(l, i, key=lambda x: q[x][0])
+		except:
+			m = i
+	if m != i:
+		q[i], q[m] = q[m], q[i]
+		mh(q, m)
+
+def bh(q):
+	for i in xrange(n, 0, -1):
+		mh(q, i)
+
+def pop(q):
+	m = q[1]
+	try:
+		q[1] = q.pop()
+	except:
+		pass
+	mh(q, 1)
+	return m
+
+def intfy(x):
+	try: return int(x)
+	except: return x
+
+def find(nodes, want):
+	for node in nodes:
+		if node[1] == want:
+			return node
+
+def relax(u,v,w):
+	if v[0] > u[0] + w:
+		v[0] = u[0] + w
+		v[2] = u
+
+nodes = input().strip().split(',')
+n = int(input())
+nodes = [[float("inf"), nodes[i], None] for i in xrange(len(nodes))]
+nodes[0][0] = 0
+edges = [map(intfy,input().split(',')) for i in xrange(n)]
+
+heap = [0] + nodes[:]
+bh(heap)
+
+while len(heap) > 1:
+	u = pop(heap)
+	for e in edges:
+		if u[1] == e[0]:
+			node = find(nodes, e[1])
+			relax(u, node, e[2])
+	bh(heap)
+
+for node in nodes:
+	print node[0]

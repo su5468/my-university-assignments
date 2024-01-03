@@ -1,0 +1,222 @@
+
+labcode:     file format elf32-littleriscv
+labcode
+architecture: riscv:rv32, flags 0x00000012:
+EXEC_P, HAS_SYMS
+start address 0x00000000
+
+Program Header:
+    LOAD off    0x00000060 vaddr 0x00000000 paddr 0x00000000 align 2**4
+         filesz 0x00000900 memsz 0x00000900 flags rwx
+
+Sections:
+Idx Name          Size      VMA       LMA       File off  Algn
+  0 .text         00000140  00000000  00000000  00000060  2**4
+                  CONTENTS, ALLOC, LOAD, CODE
+  1 .data         00000500  00000400  00000400  00000460  2**4
+                  CONTENTS, ALLOC, LOAD, DATA
+  2 .riscv.attributes 0000001c  00000000  00000000  00000960  2**0
+                  CONTENTS, READONLY
+  3 .comment      00000012  00000000  00000000  0000097c  2**0
+                  CONTENTS, READONLY
+  4 .debug_line   000001f2  00000000  00000000  0000098e  2**0
+                  CONTENTS, READONLY, DEBUGGING, OCTETS
+  5 .debug_info   00000100  00000000  00000000  00000b80  2**0
+                  CONTENTS, READONLY, DEBUGGING, OCTETS
+  6 .debug_abbrev 00000099  00000000  00000000  00000c80  2**0
+                  CONTENTS, READONLY, DEBUGGING, OCTETS
+  7 .debug_aranges 00000060  00000000  00000000  00000d20  2**3
+                  CONTENTS, READONLY, DEBUGGING, OCTETS
+  8 .debug_str    000000ce  00000000  00000000  00000d80  2**0
+                  CONTENTS, READONLY, DEBUGGING, OCTETS
+  9 .debug_frame  0000002c  00000000  00000000  00000e50  2**2
+                  CONTENTS, READONLY, DEBUGGING, OCTETS
+SYMBOL TABLE:
+00000000 l    d  .text	00000000 .text
+00000400 l    d  .data	00000000 .data
+00000000 l    d  .riscv.attributes	00000000 .riscv.attributes
+00000000 l    d  .comment	00000000 .comment
+00000000 l    d  .debug_line	00000000 .debug_line
+00000000 l    d  .debug_info	00000000 .debug_info
+00000000 l    d  .debug_abbrev	00000000 .debug_abbrev
+00000000 l    d  .debug_aranges	00000000 .debug_aranges
+00000000 l    d  .debug_str	00000000 .debug_str
+00000000 l    d  .debug_frame	00000000 .debug_frame
+00000000 l    df *ABS*	00000000 ass3_2018130508.o
+00000400 l       .data	00000000 Input_data
+00000480 l       .data	00000000 Output_data
+00000018 l       .text	00000000 sort
+00000044 l       .text	00000000 findmax
+00000068 l       .text	00000000 done
+00000054 l       .text	00000000 cont
+00000064 l       .text	00000000 break
+00000000 l    df *ABS*	00000000 lab0.o
+00000500 l       .data	00000000 stack
+00000000 l    df *ABS*	00000000 SevenSeg.c
+00000000 g       .text	00000000 __start
+00000090 g     F .text	000000b0 SevenSeg
+
+
+
+Disassembly of section .text:
+
+00000000 <__start>:
+.globl __start
+.text
+.align 4
+
+__start:
+              la a0, Input_data         # initialize / load addr to a0
+   0:	40000513          	li	a0,1024
+              la a1, Output_data        # initialize / load addr to a1
+   4:	48000593          	li	a1,1152
+              sub a2, a1, a0            # get dist between input and output
+   8:	40a58633          	sub	a2,a1,a0
+              srai a2, a2, 2            # div by 4 since 1w = 4B (a2 = 0x20)
+   c:	40265613          	srai	a2,a2,0x2
+              mv a3, a2                 # copy that data         (a3 = 0x20)
+  10:	00060693          	mv	a3,a2
+              li t0, -17                # load t0 to -17 / selected num will replaced to -17(-inf)
+  14:	fef00293          	li	t0,-17
+
+00000018 <sort>:
+
+              
+sort:                                   # this is kind of selection sort
+              la a0, Input_data         # init a0 again cuz loop will change this value
+  18:	40000513          	li	a0,1024
+              lw s0, 0(a0)              # load first num to s0 / s0 will be max num
+  1c:	00052403          	lw	s0,0(a0)
+              mv a4, a0                 # copy that addr / a4 will be addr of max
+  20:	00050713          	mv	a4,a0
+              li s1, 0                  # this is i and it will incremented to 0x20
+  24:	00000493          	li	s1,0
+              call findmax              # findmax func sets s0 to maxnum
+  28:	01c000ef          	jal	ra,44 <findmax>
+              sw s0, 0(a1)              # max number will stored in output
+  2c:	0085a023          	sw	s0,0(a1)
+              sw t0, 0(a4)              # max number of input will change to -17(-inf)
+  30:	00572023          	sw	t0,0(a4)
+              addi a1, a1, 4            # increment by 4 since 1w = 4B
+  34:	00458593          	addi	a1,a1,4
+              addi a3, a3, -1           # a3 -= 1
+  38:	fff68693          	addi	a3,a3,-1
+              beq a3, zero, done        # if a3 == 0 then sort is done
+  3c:	02068663          	beqz	a3,68 <done>
+              j sort                    # loop
+  40:	fd9ff06f          	j	18 <sort>
+
+00000044 <findmax>:
+              
+findmax:
+              lw s2, 0(a0)              # s2 is current num
+  44:	00052903          	lw	s2,0(a0)
+              ble s2, s0, cont          # if current > max then don't branch(execute following)
+  48:	01245663          	bge	s0,s2,54 <cont>
+              mv s0, s2                 # change max num
+  4c:	00090413          	mv	s0,s2
+              mv a4, a0                 # change addr of max num
+  50:	00050713          	mv	a4,a0
+
+00000054 <cont>:
+
+cont:              
+              addi s1, s1, 1            # s1 += 1, this is i
+  54:	00148493          	addi	s1,s1,1
+              beq a2, s1, break         # if a2==s1 break(return)
+  58:	00960663          	beq	a2,s1,64 <break>
+              addi a0, a0, 4            # increment addr of current num
+  5c:	00450513          	addi	a0,a0,4
+              j findmax                 # loop
+  60:	fe5ff06f          	j	44 <findmax>
+
+00000064 <break>:
+
+break:
+              ret                       # break is return
+  64:	00008067          	ret
+
+00000068 <done>:
+	...
+.text
+.align 4
+
+	la sp, stack
+  80:	50000113          	li	sp,1280
+	j	SevenSeg
+  84:	00c0006f          	j	90 <SevenSeg>
+	...
+
+00000090 <SevenSeg>:
+#include "SevenSeg.h"
+//#define OUTPUT 0x0001018c
+#define OUTPUT 0x00000080
+
+int SevenSeg()
+{
+  90:	fd010113          	addi	sp,sp,-48
+  94:	02812623          	sw	s0,44(sp)
+  98:	03010413          	addi	s0,sp,48
+    unsigned int *seg0_addr = (unsigned int *)SevenSeg0;
+  9c:	ffff27b7          	lui	a5,0xffff2
+  a0:	00c78793          	addi	a5,a5,12 # ffff200c <stack+0xffff1b0c>
+  a4:	fcf42e23          	sw	a5,-36(s0)
+    unsigned int *seg1_addr = (unsigned int *)SevenSeg1;
+  a8:	ffff27b7          	lui	a5,0xffff2
+  ac:	01078793          	addi	a5,a5,16 # ffff2010 <stack+0xffff1b10>
+  b0:	fcf42c23          	sw	a5,-40(s0)
+    unsigned int *Output_data = (unsigned int *)OUTPUT;
+  b4:	08000793          	li	a5,128
+  b8:	fef42623          	sw	a5,-20(s0)
+    int i;
+    int result = -16;
+  bc:	ff000793          	li	a5,-16
+  c0:	fef42223          	sw	a5,-28(s0)
+    char flag = 1;
+  c4:	00100793          	li	a5,1
+  c8:	fef401a3          	sb	a5,-29(s0)
+
+    for (i = 0; i < 32; i++)
+  cc:	fe042423          	sw	zero,-24(s0)
+  d0:	03c0006f          	j	10c <SevenSeg+0x7c>
+    {
+        if (*Output_data != result)
+  d4:	fec42783          	lw	a5,-20(s0)
+  d8:	0007a703          	lw	a4,0(a5)
+  dc:	fe442783          	lw	a5,-28(s0)
+  e0:	00f70463          	beq	a4,a5,e8 <SevenSeg+0x58>
+            flag = 0;
+  e4:	fe0401a3          	sb	zero,-29(s0)
+        Output_data--;
+  e8:	fec42783          	lw	a5,-20(s0)
+  ec:	ffc78793          	addi	a5,a5,-4
+  f0:	fef42623          	sw	a5,-20(s0)
+        result++;
+  f4:	fe442783          	lw	a5,-28(s0)
+  f8:	00178793          	addi	a5,a5,1
+  fc:	fef42223          	sw	a5,-28(s0)
+    for (i = 0; i < 32; i++)
+ 100:	fe842783          	lw	a5,-24(s0)
+ 104:	00178793          	addi	a5,a5,1
+ 108:	fef42423          	sw	a5,-24(s0)
+ 10c:	fe842703          	lw	a4,-24(s0)
+ 110:	01f00793          	li	a5,31
+ 114:	fce7d0e3          	bge	a5,a4,d4 <SevenSeg+0x44>
+    }
+
+    if (flag)
+ 118:	fe344783          	lbu	a5,-29(s0)
+ 11c:	00078a63          	beqz	a5,130 <SevenSeg+0xa0>
+        *seg0_addr = SEG_1;
+ 120:	fdc42783          	lw	a5,-36(s0)
+ 124:	07900713          	li	a4,121
+ 128:	00e7a023          	sw	a4,0(a5)
+ 12c:	0100006f          	j	13c <SevenSeg+0xac>
+    else
+        *seg1_addr = SEG_2;
+ 130:	fd842783          	lw	a5,-40(s0)
+ 134:	02400713          	li	a4,36
+ 138:	00e7a023          	sw	a4,0(a5)
+
+    while (1)
+ 13c:	0000006f          	j	13c <SevenSeg+0xac>

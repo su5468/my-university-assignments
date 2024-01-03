@@ -1,0 +1,221 @@
+Starting on 3-24 at 20:35:59
+
+Question q1
+===========
+A
+*** PASS: test_cases\q1\graph_backtrack.test
+*** 	solution:		['1:A->C', '0:C->G']
+*** 	expanded_states:	['A', 'D', 'C']
+A
+*** PASS: test_cases\q1\graph_bfs_vs_dfs.test
+*** 	solution:		['2:A->D', '0:D->G']
+*** 	expanded_states:	['A', 'D']
+A
+*** PASS: test_cases\q1\graph_infinite.test
+*** 	solution:		['0:A->B', '1:B->C', '1:C->G']
+*** 	expanded_states:	['A', 'B', 'C']
+A
+*** PASS: test_cases\q1\graph_manypaths.test
+*** 	solution:		['2:A->B2', '0:B2->C', '0:C->D', '2:D->E2', '0:E2->F', '0:F->G']
+*** 	expanded_states:	['A', 'B2', 'C', 'D', 'E2', 'F']
+(34, 16)
+*** PASS: test_cases\q1\pacman_1.test
+*** 	pacman layout:		mediumMaze
+*** 	solution length: 130
+*** 	nodes expanded:		146
+
+### Question q1: 3/3 ###
+
+
+Question q2
+===========
+*** PASS: test_cases\q2\graph_backtrack.test
+*** 	solution:		['1:A->C', '0:C->G']
+*** 	expanded_states:	['A', 'B', 'C', 'D']
+*** PASS: test_cases\q2\graph_bfs_vs_dfs.test
+*** 	solution:		['1:A->G']
+*** 	expanded_states:	['A', 'B']
+*** PASS: test_cases\q2\graph_infinite.test
+*** 	solution:		['0:A->B', '1:B->C', '1:C->G']
+*** 	expanded_states:	['A', 'B', 'C']
+*** PASS: test_cases\q2\graph_manypaths.test
+*** 	solution:		['1:A->C', '0:C->D', '1:D->F', '0:F->G']
+*** 	expanded_states:	['A', 'B1', 'C', 'B2', 'D', 'E1', 'F', 'E2']
+*** PASS: test_cases\q2\pacman_1.test
+*** 	pacman layout:		mediumMaze
+*** 	solution length: 68
+*** 	nodes expanded:		269
+
+### Question q2: 3/3 ###
+
+
+Question q3
+===========
+*** PASS: test_cases\q3\graph_backtrack.test
+*** 	solution:		['1:A->C', '0:C->G']
+*** 	expanded_states:	['A', 'B', 'C', 'D']
+*** PASS: test_cases\q3\graph_bfs_vs_dfs.test
+*** 	solution:		['1:A->G']
+*** 	expanded_states:	['A', 'B']
+*** PASS: test_cases\q3\graph_infinite.test
+*** 	solution:		['0:A->B', '1:B->C', '1:C->G']
+*** 	expanded_states:	['A', 'B', 'C']
+*** PASS: test_cases\q3\graph_manypaths.test
+*** 	solution:		['1:A->C', '0:C->D', '1:D->F', '0:F->G']
+*** 	expanded_states:	['A', 'B1', 'C', 'B2', 'D', 'E1', 'F', 'E2']
+*** PASS: test_cases\q3\ucs_0_graph.test
+*** 	solution:		['Right', 'Down', 'Down']
+*** 	expanded_states:	['A', 'B', 'D', 'C', 'G']
+*** PASS: test_cases\q3\ucs_1_problemC.test
+*** 	pacman layout:		mediumMaze
+*** 	solution length: 68
+*** 	nodes expanded:		269
+*** PASS: test_cases\q3\ucs_2_problemE.test
+*** 	pacman layout:		mediumMaze
+*** 	solution length: 74
+*** 	nodes expanded:		260
+*** PASS: test_cases\q3\ucs_3_problemW.test
+*** 	pacman layout:		mediumMaze
+*** 	solution length: 152
+*** 	nodes expanded:		173
+*** PASS: test_cases\q3\ucs_4_testSearch.test
+*** 	pacman layout:		testSearch
+*** 	solution length: 7
+*** 	nodes expanded:		14
+*** PASS: test_cases\q3\ucs_5_goalAtDequeue.test
+*** 	solution:		['1:A->B', '0:B->C', '0:C->G']
+*** 	expanded_states:	['A', 'B', 'C']
+
+### Question q3: 3/3 ###
+
+
+Question q4
+===========
+0
+push	 B Right [None] 2.0 2.0 [(2.0, 1, ('B', 'Right', [None], 2.0))]
+push	 H Right [None, 'Right'] 4.0 6.0 [(6.0, 2, ('H', 'Right', [None, 'Right'], 6.0))]
+push	 D Down [None, 'Right'] 1.0 3.0 [(3.0, 3, ('D', 'Down', [None, 'Right'], 3.0)), (6.0, 2, ('H', 'Right', [None, 'Right'], 6.0))]
+push	 C Up [None, 'Right'] 2.0 4.0 [(3.0, 3, ('D', 'Down', [None, 'Right'], 3.0)), (6.0, 2, ('H', 'Right', [None, 'Right'], 6.0)), (4.0, 4, ('C', 'Up', [None, 'Right'], 4.0))]
+push	 A Left [None, 'Right'] 2.0 4.0 [(3.0, 3, ('D', 'Down', [None, 'Right'], 3.0)), (4.0, 5, ('A', 'Left', [None, 'Right'], 4.0)), (4.0, 4, ('C', 'Up', [None, 'Right'], 4.0)), (6.0, 2, ('H', 'Right', [None, 'Right'], 6.0))]
+push	 E Right [None, 'Right', 'Down'] 2.5 5.5 [(4.0, 4, ('C', 'Up', [None, 'Right'], 4.0)), (4.0, 5, ('A', 'Left', [None, 'Right'], 4.0)), (6.0, 2, ('H', 'Right', [None, 'Right'], 6.0)), (5.5, 6, ('E', 'Right', [None, 'Right', 'Down'], 5.5))]
+push	 F Down [None, 'Right', 'Down'] 2.0 5.0 [(4.0, 4, ('C', 'Up', [None, 'Right'], 4.0)), (4.0, 5, ('A', 'Left', [None, 'Right'], 4.0)), (6.0, 2, ('H', 'Right', [None, 'Right'], 6.0)), (5.5, 6, ('E', 'Right', [None, 'Right', 'Down'], 5.5)), (5.0, 7, ('F', 'Down', [None, 'Right', 'Down'], 5.0))]
+push	 G Left [None, 'Right', 'Down'] 1.5 4.5 [(4.0, 4, ('C', 'Up', [None, 'Right'], 4.0)), (4.0, 5, ('A', 'Left', [None, 'Right'], 4.0)), (4.5, 8, ('G', 'Left', [None, 'Right', 'Down'], 4.5)), (5.5, 6, ('E', 'Right', [None, 'Right', 'Down'], 5.5)), (5.0, 7, ('F', 'Down', [None, 'Right', 'Down'], 5.0)), (6.0, 2, ('H', 'Right', [None, 'Right'], 6.0))]
+push	 B Down [None, 'Right', 'Up'] 2.0 6.0 [(4.0, 5, ('A', 'Left', [None, 'Right'], 4.0)), (5.0, 7, ('F', 'Down', [None, 'Right', 'Down'], 5.0)), (4.5, 8, ('G', 'Left', [None, 'Right', 'Down'], 4.5)), (5.5, 6, ('E', 'Right', [None, 'Right', 'Down'], 5.5)), (6.0, 2, ('H', 'Right', [None, 'Right'], 6.0)), (6.0, 9, ('B', 'Down', [None, 'Right', 'Up'], 6.0))]
+*** PASS: test_cases\q4\astar_0.test
+*** 	solution:		['Right', 'Down', 'Down']
+*** 	expanded_states:	['A', 'B', 'D', 'C', 'G']
+2.5
+push	 A 0 [None] 2.0 8.0 [(8.0, 1, ('A', '0', [None], 2.0))]
+push	 B 1 [None] 3.0 9.0 [(8.0, 1, ('A', '0', [None], 2.0)), (9.0, 2, ('B', '1', [None], 3.0))]
+push	 D 2 [None] 5.0 11.0 [(8.0, 1, ('A', '0', [None], 2.0)), (9.0, 2, ('B', '1', [None], 3.0)), (11.0, 3, ('D', '2', [None], 5.0))]
+push	 C 0 [None, '0'] 3.0 7.5 [(7.5, 4, ('C', '0', [None, '0'], 5.0)), (11.0, 3, ('D', '2', [None], 5.0)), (9.0, 2, ('B', '1', [None], 3.0))]
+push	 S 1 [None, '0'] 2.0 6.5 [(6.5, 5, ('S', '1', [None, '0'], 4.0)), (7.5, 4, ('C', '0', [None, '0'], 5.0)), (9.0, 2, ('B', '1', [None], 3.0)), (11.0, 3, ('D', '2', [None], 5.0))]
+push	 A 0 [None, '0', '0'] 3.0 9.125 [(9.0, 2, ('B', '1', [None], 3.0)), (11.0, 3, ('D', '2', [None], 5.0)), (9.125, 6, ('A', '0', [None, '0', '0'], 8.0))]
+push	 D 1 [None, '0', '0'] 1.0 7.125 [(7.125, 7, ('D', '1', [None, '0', '0'], 6.0)), (9.0, 2, ('B', '1', [None], 3.0)), (9.125, 6, ('A', '0', [None, '0', '0'], 8.0)), (11.0, 3, ('D', '2', [None], 5.0))]
+push	 G 2 [None, '0', '0'] 2.0 8.125 [(7.125, 7, ('D', '1', [None, '0', '0'], 6.0)), (8.125, 8, ('G', '2', [None, '0', '0'], 7.0)), (9.125, 6, ('A', '0', [None, '0', '0'], 8.0)), (11.0, 3, ('D', '2', [None], 5.0)), (9.0, 2, ('B', '1', [None], 3.0))]
+push	 B 0 [None, '0', '0', '1'] 4.0 11.0625 [(8.125, 8, ('G', '2', [None, '0', '0'], 7.0)), (9.0, 2, ('B', '1', [None], 3.0)), (9.125, 6, ('A', '0', [None, '0', '0'], 8.0)), (11.0, 3, ('D', '2', [None], 5.0)), (11.0625, 9, ('B', '0', [None, '0', '0', '1'], 10.0))]
+push	 C 1 [None, '0', '0', '1'] 1.0 8.0625 [(8.0625, 10, ('C', '1', [None, '0', '0', '1'], 7.0)), (9.0, 2, ('B', '1', [None], 3.0)), (8.125, 8, ('G', '2', [None, '0', '0'], 7.0)), (11.0, 3, ('D', '2', [None], 5.0)), (11.0625, 9, ('B', '0', [None, '0', '0', '1'], 10.0)), (9.125, 6, ('A', '0', [None, '0', '0'], 8.0))]
+push	 G 2 [None, '0', '0', '1'] 5.0 12.0625 [(8.0625, 10, ('C', '1', [None, '0', '0', '1'], 7.0)), (9.0, 2, ('B', '1', [None], 3.0)), (8.125, 8, ('G', '2', [None, '0', '0'], 7.0)), (11.0, 3, ('D', '2', [None], 5.0)), (11.0625, 9, ('B', '0', [None, '0', '0', '1'], 10.0)), (9.125, 6, ('A', '0', [None, '0', '0'], 8.0)), (12.0625, 11, ('G', '2', [None, '0', '0', '1'], 11.0))]
+push	 S 3 [None, '0', '0', '1'] 5.0 12.0625 [(8.0625, 10, ('C', '1', [None, '0', '0', '1'], 7.0)), (9.0, 2, ('B', '1', [None], 3.0)), (8.125, 8, ('G', '2', [None, '0', '0'], 7.0)), (11.0, 3, ('D', '2', [None], 5.0)), (11.0625, 9, ('B', '0', [None, '0', '0', '1'], 10.0)), (9.125, 6, ('A', '0', [None, '0', '0'], 8.0)), (12.0625, 11, ('G', '2', [None, '0', '0', '1'], 11.0)), (12.0625, 12, ('S', '3', [None, '0', '0', '1'], 11.0))]
+*** FAIL: test_cases\q4\astar_1_graph_heuristic.test
+*** 	graph:
+*** 	         2     3     2
+*** 	      S --- A --- C ---> G
+*** 	      | \       /       ^
+*** 	    3 |  \ 5   / 1     / 
+*** 	      |   \   /       / 
+*** 	      B --- D -------/
+*** 	         4         5  
+*** 	    
+*** 	    S is the start state, G is the goal.  Arrows mark possible state 
+*** 	    transitions.  The number next to the arrow is the cost of that transition.
+*** 	    
+*** 	    The heuristic value of each state is:
+*** 	    	S 6.0
+*** 	    	A 2.5
+*** 	    	B 5.25
+*** 	    	C 1.125
+*** 	    	D 1.0625
+*** 	    	G 0
+*** 	student solution:		['0', '0', '2']
+*** 	student expanded_states:	['S', 'A', 'C', 'D']
+*** 
+*** 	correct solution:		['0', '0', '2']
+*** 	correct expanded_states:	['S', 'A', 'D', 'C']
+*** 	correct rev_solution:		['0', '0', '2']
+*** 	correct rev_expanded_states:	['S', 'A', 'D', 'C']
+*** FAIL: Exception raised: unsupported operand type(s) for -: 'str' and 'int'
+*** 
+*** Traceback (most recent call last):
+***   File "D:\Codes\2023AI\search\grading.py", line 78, in grade
+***     util.TimeoutFunction(getattr(gradingModule, q),1800)(self) # Call the question's function
+***   File "D:\Codes\2023AI\search\util.py", line 637, in __call__
+***     result = self.function(*args, **keyArgs)
+***   File "./autograder.py", line 300, in <lambda>
+***     return lambda grades: question.execute(grades)
+***   File "D:\Codes\2023AI\search\testClasses.py", line 57, in execute
+***     if not f(grades):
+***   File "./autograder.py", line 295, in <lambda>
+***     return lambda grades: testCase.execute(grades, moduleDict, solutionDict)
+***   File "searchTestClasses.py", line 307, in execute
+***     solution, expanded, error = self.getSolInfo(search, searchAgents)
+***   File "searchTestClasses.py", line 286, in getSolInfo
+***     solution = alg(problem, heuristic)
+***   File "search.py", line 158, in aStarSearch
+***     print(heuristic('A', problem))
+***   File "searchAgents.py", line 257, in manhattanHeuristic
+***     return abs(xy1[0] - xy2[0]) + abs(xy1[1] - xy2[1])
+*** TypeError: unsupported operand type(s) for -: 'str' and 'int'
+*** 
+
+### Question q4: 0/3 ###
+
+
+Question q5
+===========
+*** Method not implemented: getStartState at line 298 of searchAgents.py
+*** FAIL: Terminated with a string exception.
+
+### Question q5: 0/3 ###
+
+
+Question q6
+===========
+*** NOTE: Make sure to complete Question q4 before working on Question q6,
+*** because Question q6 builds upon your answer for Question q4.
+
+
+Question q7
+===========
+*** NOTE: Make sure to complete Question q4 before working on Question q7,
+*** because Question q7 builds upon your answer for Question q4.
+
+
+Question q8
+===========
+[SearchAgent] using function depthFirstSearch
+[SearchAgent] using problem type PositionSearchProblem
+*** Method not implemented: findPathToClosestDot at line 488 of searchAgents.py
+*** FAIL: Terminated with a string exception.
+
+### Question q8: 0/3 ###
+
+
+Finished at 20:35:59
+
+Provisional grades
+==================
+Question q1: 3/3
+Question q2: 3/3
+Question q3: 3/3
+Question q4: 0/3
+Question q5: 0/3
+Question q6: 0/3
+Question q7: 0/4
+Question q8: 0/3
+------------------
+Total: 9/25
+
+Your grades are NOT yet registered.  To register your grades, make sure
+to follow your instructor's guidelines to receive credit on your project.
+

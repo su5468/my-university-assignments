@@ -1,0 +1,62 @@
+from sys import stdin
+
+n = input()
+c = list(map(int, stdin.readlines()))
+chars = list(map(lambda x: {'f': x}, c))
+q = [0] + chars
+p = {}
+
+def mh(q, i):
+	l = i * 2
+	r = i * 2 + 1
+	n = len(q)
+	try:
+		m = min(l, r, i, key=lambda x: q[x]['f'])
+	except:
+		try:
+			m = min(l, i, key=lambda x: q[x]['f'])
+		except:
+			m = i
+	if m != i:
+		q[i], q[m] = q[m], q[i]
+		mh(q, m)
+
+def bh(q):
+	for i in xrange(n, 0, -1):
+		mh(q, i)
+
+def push(q, a):
+	q.append(a)
+	i = len(q) - 1
+	while i > 1 and q[i//2]['f'] > q[i]['f']:
+		q[i//2], q[i] = q[i], q[i//2]
+		i //= 2
+
+def pop(q):
+	m = q[1]
+	try:
+		q[1] = q.pop()
+	except:
+		pass
+	mh(q, 1)
+	return m
+
+def main():
+	for i in xrange(1, n):
+		x, y = pop(q), pop(q)
+		push(q, {'l': x, 'r': y, 'f': x['f'] + y['f']})
+
+def concat(q, s):
+	if len(q) == 1:
+		p[q['f']] = s
+	else:
+		if 'l' in q:
+			concat(q['l'], s + '0')
+		if 'r' in q:
+			concat(q['r'], s + '1')
+
+bh(q)
+main()
+concat(q[1], '')
+for i in c:
+	print p[i]
